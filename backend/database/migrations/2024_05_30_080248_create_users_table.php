@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('url', 250)->nullable();
+            $table->string('url', 250)->default('http://127.0.0.1:8000/upload/img/avatar.png');
             $table->string('token', 60)->unique()->nullable();
             $table->timestamps();
         });
