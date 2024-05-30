@@ -1,0 +1,62 @@
+:root {
+  color-scheme: light dark;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  cursor: url("../src/assets/Icons/goldCursor.png"), auto; /* Aplicar cursor al body */
+}
+
+
+
+/* Cambiar el color de la barra de desplazamiento en navegadores web */
+::-webkit-scrollbar {
+  width: 3.5px; /* Ancho de la barra de desplazamiento */
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #000000; /* Color de fondo de la pista de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdbea2; /* Color del pulgar de desplazamiento */
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #eaca8e; /* Color del pulgar de desplazamiento al pasar el puntero */
+}
+
+@font-face {
+  font-family: 'Ringbearer';
+  src: url('../src/assets/fonts/Ringbearer.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  color: rgba(225, 198, 128, 0.852);
+  text-align: center;
+  text-shadow: 10% 10% 10% #3a3a3a;
+  font-size: 40px;
+  font-family: 'Ringbearer', sans-serif;
+}
+
+h2{
+  font-family: 'Ringbearer', sans-serif;
+  color: #e1c680;
+  text-shadow: #333 10px 10px 10px;
+}
+
+
+p {
+  font-family: 'Garamond', sans-serif;
+  color: aliceblue;
+}
