@@ -2,7 +2,7 @@
 
 <template>
     <div>
-        <button :class="props.className" @click="$emit('click')">{{ $props.text }}</button>
+        <button class="custom-button" @click="$emit('click')">{{ $props.text }}</button>
     </div>
 </template>
 
@@ -10,7 +10,6 @@
     import { defineProps } from 'vue';
 
     const props = defineProps<{
-        className: string;
         text: string;
     }>();
 
@@ -27,7 +26,6 @@
         justify-content: space-between;
         align-items: center;
         text-align: center;
-        margin: 10px;
         font-size: 16px;
         font-weight: bold;
         padding: 10px 20px;

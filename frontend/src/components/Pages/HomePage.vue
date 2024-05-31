@@ -29,7 +29,7 @@ import { useRouter } from 'vue-router';
 // Import images
 const newsImage = new URL('../../assets/images/Shattering.webp', import.meta.url).href;
 const categoriesImage = new URL('../../assets/images/ShadowOfTheErdtree.webp', import.meta.url).href;
-const mapImage = new URL('../../assets/images/Shattering.webp', import.meta.url).href;
+const mapImage = new URL('../../assets/images/exploration.webp', import.meta.url).href;
 
 const router = useRouter();
 
@@ -85,7 +85,8 @@ const goToSection = (index: number) => {
   height: auto;
   border-radius: 10px;
   margin-bottom: 10px;
-
+  max-height: 450px;
+  object-fit: cover;
 }
 
 .section h2 {

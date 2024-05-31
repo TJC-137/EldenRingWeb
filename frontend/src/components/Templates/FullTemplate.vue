@@ -13,6 +13,8 @@
 
     <div class="panel">     <!-- OPACITY PANEL -->
 
+      <ToolBarAtom />
+
                             <!-- HEADER -->
       <div class="header">  <HeaderTitle /> </div>
             
@@ -30,6 +32,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { RouterView } from 'vue-router';
 import HeaderTitle from '../Atoms/HeaderTitle.vue';
+import ToolBarAtom from '../Atoms/ToolBarAtom.vue';
 
 const searchQuery = ref('');
 const router = useRouter();

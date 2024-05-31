@@ -2,22 +2,22 @@
     <div class="login">
         <h1>Login</h1>
         <input type="text" v-model="username" placeholder="Username" />
+        <input type="email" v-model="email" placeholder="Email" />
         <input type="password" v-model="password" placeholder="Password" />
-        <ButtonAtom className="custom-button" text="Login" @click="login()"/>
-        <ButtonAtom className="custom-button" text="Cancel" @clcik="cancel()"/>
+        <div class="buttons">
+            <ButtonAtom className="custom-button" text="Login" @click="login()"/>
+            <ButtonAtom className="custom-button" text="Cancel" @clcik="cancel()"/>
+        </div>
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
     import ButtonAtom from './ButtonAtom.vue';
 
-    const props = defineProps<{
-        className: string;
-    }>();
-
     const username = ref('');
+    const email = ref('');
     const password = ref('');
     const router = useRouter();
 
@@ -36,22 +36,23 @@
 
 <style scoped>
     .login {
-        background-color: #000;
+        background-color: #00000092;
         color: #fff;
         border: 1px solid #d0c377;
-        width: 20%;
-        height: 30%;
-        border-radius: 10px;
+        width: 500px;
+        height: 40%;
         padding: 20px;
+        border-radius: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: Arial, sans-serif;
+        font-family: 'garamond';
         font-size: 16px;
         line-height: 1.5;
         text-align: center;
-        gap: 10px;
+        gap: 20px;
+
     }
 
     input{
@@ -63,5 +64,10 @@
         justify-content: space-between;
         align-items: center;
         text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 20px;
     }
 </style>
