@@ -180,8 +180,6 @@ const goToSection = (index: number) => {
   .carousel {
     width: 100%;
   }
-
-  
   
 }
 

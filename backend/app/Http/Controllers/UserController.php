@@ -64,7 +64,7 @@ class UserController extends Controller
 
             $tupla=User::create($data);
 
-            return response()->json(['status' => 'succes', 'data' => $tupla->token], 200);
+            return response()->json(['status' => 'success', 'data' => $tupla->token], 200);
         }
 
     }

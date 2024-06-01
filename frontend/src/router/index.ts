@@ -6,6 +6,7 @@ import NewsPage from '../components/Pages/NewsPage.vue';
 import ItemDetailsPage from '../components/Pages/ItemDetailsPage.vue';
 import MapPage from '../components/Pages/MapPage.vue';
 import LoginAtom from '../components/Atoms/LoginAtom.vue';
+import RegisterAtom from '../components/Atoms/RegisterAtom.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,12 +17,18 @@ const router = createRouter({
       children: [
         {
           path: '',
+          name: 'home',
           component: HomePage,
         },
         {
           path: 'login',
           name: 'login',
           component: LoginAtom,
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: RegisterAtom,
         },
         {
           path: 'news',

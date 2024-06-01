@@ -27,7 +27,7 @@ onMounted(() => {
   text-align: center;
   opacity: 0;
   z-index: 1;
-  transition: opacity 3s ease-in-out;
+  transition: opacity 3s ease-in-out; 
 }
 
 .header.show {
@@ -38,6 +38,8 @@ onMounted(() => {
   text-shadow: 3px 3px 3px #3a3a3a;
   top: 1%;
   width: 20rem;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 </style>
