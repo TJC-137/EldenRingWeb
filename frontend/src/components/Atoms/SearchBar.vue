@@ -11,27 +11,48 @@
         class="search-bar"
       />
     </div>
+    <div v-if="error" class="error-message">
+      {{ error }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useSearchApi } from '../../api/composables/searchApi';
 
 const searchQuery = ref('');
 const showSearch = ref(false);
 const router = useRouter();
+const error = ref('');
+const { searchResults, searchInAllCategories } = useSearchApi();
 
 const toggleSearch = () => {
   showSearch.value = !showSearch.value;
 };
 
-const searchItems = () => {
+const searchItems = async () => {
   if (searchQuery.value) {
-    router.push({
-      name: 'itemList',
-      params: { category: 'items', itemName: searchQuery.value },
-    });
+    await searchInAllCategories(searchQuery.value);
+    if (!error.value) {
+      if (searchResults.value.length === 1) {
+        const item = searchResults.value[0];
+        router.push({
+          name: 'itemDetails',
+          params: {
+            category: item.category,
+            itemId: item.id,
+            itemName: item.name,
+          },
+        });
+      } else {
+        router.push({
+          name: 'itemList',
+          query: { search: searchQuery.value },
+        });
+      }
+    }
   }
 };
 </script>

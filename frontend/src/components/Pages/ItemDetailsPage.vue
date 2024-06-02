@@ -46,7 +46,7 @@
               </div>    
             </section>      
                 
-            <section class="frost"> 
+            <section class="death"> 
               <strong> PASSIVE: </strong> 
               <p>{{ item.passive }} </p>
             </section>
@@ -317,7 +317,97 @@
             </section>
 
 
-          </div>          
+          </div>   
+          
+          <!-- Shield --> 
+          <div v-if="props.category == 'Shields'">            
+            <h2>{{ item.name }}</h2>
+
+            <section class="description"> 
+              <strong>DESCRIPTION: </strong> 
+              <p>{{  item.description }}</p>
+            </section>
+
+            <section class="attack"> <strong>DAMAGE: </strong> 
+              <div v-for="atk in item.attack" :key="atk.name"  >
+                <p :class="atk.name"> {{ atk.name }}: {{ atk.amount }} </p>
+              </div>    
+            </section>     
+            
+            <section class="defence"> <strong>DEFENCE: </strong> 
+              <div v-for="def in item.defence" :key="def.name"  >
+                <p :class="def.name"> {{ def.name }}: {{ def.amount }} </p>
+              </div>    
+            </section>   
+
+            <section class="scaling"> <strong>SCALING: </strong> 
+              <div v-for="atr in item.scalesWith" :key="atr.name"  >
+                <p :class="atr.name"> {{ atr.name }}: {{ atr.scaling }} </p>
+              </div>    
+            </section>
+
+            <section class="required"> <strong>REQUIRED: </strong> 
+              <div v-for="req in item.requiredAttributes" :key="req.name"  >
+                <p :class="req.name"> {{ req.name }}: {{ req.amount }} </p>
+              </div>    
+            </section> 
+
+            <section class="type"> 
+              <strong> CATEGORY: </strong> 
+              <p>{{ item.category }} </p>
+            </section>
+
+
+            <section class="weight"> 
+              <strong> WEIGHT: </strong> 
+              <p>{{ item.weight }} </p>
+            </section>
+
+
+          </div>  
+          
+          <!-- Ash Of War --> 
+          <div v-if="props.category == 'Ashes'">            
+            <h2>{{ item.name }}</h2>
+
+            <section class="description"> 
+              <strong>DESCRIPTION: </strong> 
+              <p>{{  item.description }}</p>
+            </section>
+            
+
+            <section class="affinity"> 
+              <strong>AFFINITY: </strong>  
+              <p :class="item.affinity">{{ item.affinity }}</p> 
+            </section>
+
+            <section class="skill"> 
+              <strong>SKILL: </strong>  
+              <p>{{ item.skill }}</p> 
+            </section>   
+                
+          </div>
+
+          <!-- Creatures --> 
+          <div v-else-if="props.category == 'Creatures'">            
+            <h2>{{ item.name }}</h2>
+
+            <section class="description"> 
+              <strong>DESCRIPTION: </strong> 
+              <p>{{  item.description }}</p>
+            </section>
+
+            <section class="location"> 
+              <strong>LOCATION: </strong> 
+              <p>{{  item.location }}</p>
+            </section>
+            
+            <section class="drops"> 
+              <strong>DROPS: </strong> 
+              <p>{{  item.drops }}</p>
+            </section>
+
+          </div>
 
         </div>
         </div>
@@ -325,7 +415,7 @@
     </div>
 
     <div v-else >
-      <p class="settings-error">Trying to load item details...</p>
+      <p class="settings-error">There was an error trying to load item details...</p>
     </div>
 
   </div>
@@ -412,6 +502,12 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   }
 
+  .item-details-info strong {
+    color: #e1c680;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    margin-bottom: 5px;
+  }
+
   .item-details p {
     font-size: 16px;
     line-height: 1.6;
@@ -445,6 +541,56 @@
   .item-details p:last-child::after {
     content: ' ⚜';
     color: #e1c680;
+  }
+
+  
+  .item-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .item-list li {
+    cursor: pointer;
+    color: #e1c680;
+    padding: 5px;
+    border: 1px solid #e1c680;
+    margin: 5px 0;
+  }
+
+  .item-list li:hover {
+    background-color: #333;
+  }
+
+  
+
+  .item img{
+    width: 50px;
+    height: 50px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+
+  }
+
+  .spec-details section {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .spec-details strong{
+    padding: 10px;
+    margin-bottom: 25px;
+  }
+
+  .spec-details p {
+    margin-bottom: 5px;
   }
 
     /* DAMAGE */
@@ -493,9 +639,19 @@
   .spec-details p.Dex::before,
   .spec-details p.Str::before,
   .spec-details p.Fai::before,
-  .spec-details p.Arc::before
+  .spec-details p.Arc::before,
+  
 
-    
+    /* AFFINITIES */
+
+  .spec-details p.Standard::before,
+  .spec-details p.Heavy::before,
+  .spec-details p.Keen::before,
+  .spec-details p.Quality::before,
+  .spec-details p.Cold::before,
+  .spec-details p.Flame::before,
+  .spec-details p.Poison::before,
+  .spec-details p.Blood::before
   {
     content: '';
     display: inline-block;
@@ -659,6 +815,41 @@
     background-image: url('../../assets/Icons/Rng.png');
   }
 
+  .spec-details p.Standard::before {
+    background-image: url('../../assets/Icons/StandardAf.png');
+  }
+
+  .spec-details p.Heavy::before {
+    background-image: url('../../assets/Icons/Heavy.png');
+  }
+
+  .spec-details p.Keen::before {
+    background-image: url('../../assets/Icons/Keen.png');
+  }
+
+  .spec-details p.Quality::before {
+    background-image: url('../../assets/Icons/Quality.png');
+  }
+
+  .spec-details p.Cold::before {
+    background-image: url('../../assets/Icons/Cold.png');
+  }
+
+  .spec-details p.Flame::before {
+    background-image: url('../../assets/Icons/Flame.png');
+  }
+
+  .spec-details p.Poison::before {
+    background-image: url('../../assets/Icons/Poison.png');
+  }
+
+  .spec-details p.Blood::before {
+    background-image: url('../../assets/Icons/Blood.png');
+  }
+  
+  .spec-details p.Lightning::before {
+    background-image: url('../../assets/Icons/ligt.png');
+  }
   /*Attributes*/
 
   .spec-details section.frost::before,
@@ -699,34 +890,12 @@
     background-image: url('../../assets/Icons/sleep.png');
   }
 
-  .spec-details p.strength::before {
-    content: '💪';
-    color: #e1c680;
+  .spec-details section.madness::before {
+    background-image: url('../../assets/Icons/madness.png');
   }
 
-  .spec-details p.dexterity::before {
-    content: '🤸';
-    color: #e1c680;
-  }
-
-  .spec-details p.intelligence::before {
-    content: '🧠';
-    color: #e1c680;
-  }
-
-  .spec-details p.faith::before {
-    content: '🙏';
-    color: #e1c680;
-  }
-
-  .spec-details p.arcane::before {
-    content: '🔮';
-    color: #e1c680;
-  }
-
-  .spec-details p.weight::before {
-    content: '⚖️';
-    color: #e1c680;
+  .spec-details section.death::before {
+    background-image: url('../../assets/Icons/death.png');
   }
 
   .spec-details section.attack::before,
@@ -752,6 +921,8 @@
   .spec-details section.hpCost::before,
   .spec-details section.defence::before,
   .spec-details section.scaling::before,
+  .spec-details section.affinity::before,
+  .spec-details section.skill::before,
   .settings-error::before
   {
     content: '';
@@ -849,61 +1020,14 @@
     background-image: url('../../assets/Icons/settings.png');
   }
 
-
-
-
-  .item-list {
-    list-style: none;
-    padding: 0;
+  .spec-details section.affinity::before {
+    background-image: url('../../assets/Icons/affinity.png');
   }
 
-  .item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 5px;
-
+  .spec-details section.skill::before {
+    background-image: url('../../assets/Icons/skill.png');
   }
 
-  .item img{
-    width: 50px;
-    height: 50px;
-  }
-
-  .item-list li {
-    cursor: pointer;
-    color: #e1c680;
-    padding: 5px;
-    border: 1px solid #e1c680;
-    margin: 5px 0;
-  }
-
-  .item-list li:hover {
-    background-color: #333;
-  }
-
-  .item-details-info strong {
-    color: #e1c680;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    margin-bottom: 5px;
-  }
-
-  .spec-details section {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-
-  .spec-details strong{
-    padding: 10px;
-    margin-bottom: 25px;
-  }
-
-  .spec-details p {
-    margin-bottom: 5px;
-  }
 
   /* Animations */
   @keyframes fadeIn {

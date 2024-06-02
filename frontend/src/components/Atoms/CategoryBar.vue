@@ -33,14 +33,17 @@ const props = defineProps<{
 const emits = defineEmits(['closeMenu']);
 
 const categories = [
-  { name: "ITEMS", imageUrl: "src/assets/Icons/tools.png", category: "Items" },
+  { name: "ITEMS", imageUrl: "src/assets/Icons/Tools.png", category: "Items" },
   { name: "TALISMANS", imageUrl: "src/assets/Icons/Talismans.png", category: "Talismans" },
   { name: "WEAPONS", imageUrl: "src/assets/Icons/Weapons.png", category: "Weapons" },
+  { name: "SHIELDS", imageUrl: "src/assets/Icons/Shields.png", category: "Shields" },
   { name: "ARMORS", imageUrl: "src/assets/Icons/Armors.png", category: "Armors" },
   { name: "ARROWS AND BOLTS", imageUrl: "src/assets/Icons/Ammos.png", category: "Ammos" },
   { name: "INCANTATIONS", imageUrl: "src/assets/Icons/Incantations.png", category: "Incantations" },
   { name: "SORCERIES", imageUrl: "src/assets/Icons/Sorceries.png", category: "Sorceries" },
-  { name: "SPIRITS", imageUrl: "src/assets/Icons/Ashes.png", category: "Spirits" },
+  { name: "SPIRITS", imageUrl: "src/assets/Icons/Spirits.png", category: "Spirits" },
+  { name: "ASHES OF WAR", imageUrl: "src/assets/Icons/Ashes.png", category: "Ashes" },
+  { name: "CREATURES", imageUrl: "src/assets/Icons/Creatures.png", category: "Creatures" },
   { name: "CHARACTERS", imageUrl: "src/assets/Icons/Npcs.png", category: "Npcs" },
   { name: "BOSSES", imageUrl: "src/assets/Icons/Bosses.png", category: "Bosses" },
 ];

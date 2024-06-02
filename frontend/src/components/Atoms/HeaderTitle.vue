@@ -26,7 +26,7 @@ onMounted(() => {
   transform: translateX(-50%);
   text-align: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 1000;
   transition: opacity 3s ease-in-out; 
 }
 

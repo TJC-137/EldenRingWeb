@@ -62,7 +62,7 @@ watchEffect(() => {
   padding: 0;
   margin: 0;
   gap: 20px;
-  animation: fadeIn 10s;
+  animation: fadeIn 3s;
 }
 
 .box {

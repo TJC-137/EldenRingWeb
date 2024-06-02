@@ -12,11 +12,11 @@ export interface Shield {
   }
   
   export async function fetchShields(): Promise<Shield[]> {
-    const response = await fetch('https://eldenring.fanapis.com/api/shields');
+    const response = await fetch('https://eldenring.fanapis.com/api/shields?limit=300&page=?');
     if (!response.ok) {
       throw new Error('Error al obtener los escudos');
     }
     const data = await response.json();
-    return data;
+    return data.data;
   }
   

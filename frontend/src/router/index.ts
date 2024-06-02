@@ -4,6 +4,7 @@ import ItemsPage from '../components/Pages/ItemsPage.vue';
 import HomePage from '../components/Pages/HomePage.vue';
 import NewsPage from '../components/Pages/NewsPage.vue';
 import ItemDetailsPage from '../components/Pages/ItemDetailsPage.vue';
+import ItemListPage from '../components/Pages/ItemListPage.vue';
 import MapPage from '../components/Pages/MapPage.vue';
 import LoginAtom from '../components/Atoms/LoginAtom.vue';
 import RegisterAtom from '../components/Atoms/RegisterAtom.vue';
@@ -35,6 +36,12 @@ const router = createRouter({
           component: NewsPage,
         },
         {
+          path: 'map',
+          name: 'map',
+          component: MapPage,
+          props: true,
+        },
+        {
           path: ':category',
           name: 'categories',
           component: ItemsPage,
@@ -51,13 +58,12 @@ const router = createRouter({
           }),
         },
         {
-          path: 'map',
-          name: 'map',
-          component: MapPage,
-          props: true,
+          path: 'search',
+          name: 'itemList',
+          component: ItemListPage,
         },
-      ]
-    }
+      ],
+    },
   ],
 });
 
