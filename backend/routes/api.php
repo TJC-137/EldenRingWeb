@@ -14,8 +14,12 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('', [UserController::class, 'index']);
     Route::post('', [UserController::class, 'store']);
     Route::get('{id}', [UserController::class, 'show']);
-    Route::put('{id}', [UserController::class, 'update']);
     Route::delete('{id}', [UserController::class, 'destroy']);
+    Route::put('{id}', [UserController::class, 'updateName']);
+    Route::put('email/{id}', [UserController::class, 'updateEmail']);
+    Route::put('password/{id}', [UserController::class, 'updatePassword']);
+    Route::post('login', [UserController::class, 'login']);
+    Route::post('img/{id}', [UserController::class, 'updateImg']);
 });
 
     

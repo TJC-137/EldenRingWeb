@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  z-index: 1000;
+  z-index: 100;
   transition: transform 0.3s ease-in-out;
 }
 

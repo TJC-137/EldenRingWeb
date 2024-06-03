@@ -2,15 +2,23 @@
   <div class="category-bar" :class="{ 'show': showMenu }">
     <div class="header-logo">
       <div class="menu-icon" @click="closeMenu">
-        <img src="../../assets/images/ERicon.png" alt="Elden Ring Logo" class="logo" />
+        <img :src="userImg" class="logo" />
       </div>
       <div class="close-btn" @click="closeMenu">×</div>
     </div>
-    <div class="buttons">
+    
+    <div class="buttons" v-if="!loggedIn">
       <CustomButton class="custom-button" text="Register" @click="register" />
       <img src="../../assets/images/ERicon.png" alt="Elden Ring Logo" class="logo" />
       <CustomButton class="custom-button" text="Login" @click="login" />
     </div>
+
+    <div class="buttons" v-if="loggedIn">
+      <CustomButton class="custom-button" text="Edit" @click="edit" />
+      <img src="../../assets/images/ERicon.png" alt="Elden Ring Logo" class="logo" />
+      <CustomButton class="custom-button" text="Logout" @click="logout" />
+    </div>
+
     <ul class="category-list">
       <li v-for="category in categories" :key="category.name" @click="handleCategoryClick(category.category)">
         <div class="item">
@@ -23,13 +31,18 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineProps, defineEmits, onMounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import CustomButton from './ButtonAtom.vue';
+
 
 const props = defineProps<{
   showMenu: boolean;
 }>();
+
+const loggedIn = ref(false);
+const userImg = ref("http://127.0.0.1:8000/upload/img/avatar.png");
+
 const emits = defineEmits(['closeMenu']);
 
 const categories = [
@@ -49,25 +62,72 @@ const categories = [
 ];
 
 const router = useRouter();
+const route = useRoute();
 
 const handleCategoryClick = (category: string) => {
   router.push({ name: 'categories', params: { category: category } });
   emits('closeMenu');
 };
 
+// Close menu
 const closeMenu = () => {
   emits('closeMenu');
 };
 
+// Login
 const login = () => {
   console.log("Login clicked");
   router.push({ path: '/login' });
 };
 
+// Register
 const register = () => {
   console.log("Register clicked");
   router.push({ path: '/register' });
 };
+
+// Edit
+const edit = () => {
+  console.log("Edit clicked");
+  router.push({ path: '/edit' });
+};
+
+// Logout
+const logout = () => {
+  console.log("Logout clicked");
+  localStorage.removeItem('data');  
+  router.push({ name: 'home' }).then(() => {
+    window.location.reload();  // Recarga la página
+  });
+};
+
+// Load user data from local storage
+const loadUserData = () => {
+  const data = localStorage.getItem('data');
+  console.log(data); // Parsear la cadena JSON a un objeto (data);
+  if (data) {
+    try {     
+      const parsedData = JSON.parse(data); // Parsear la cadena JSON a un objeto
+      console.log(parsedData);
+      const url = parsedData.url; 
+      console.log(url);
+      userImg.value = url; 
+    } catch (error) {
+      console.error('Failed to parse data:', error);
+    }
+    loggedIn.value = true;
+  }
+};
+
+// Load user data when the component is mounted
+onMounted(() => {
+  loadUserData();
+});
+
+// Reload user data when the route changes
+watch(route, (newRoute) => {
+  loadUserData();
+});
 </script>
 
 <style scoped>
@@ -87,12 +147,14 @@ const register = () => {
 
 .category-bar.show {
   left: 0;
+  z-index: 1000;
 }
 
 .close-btn {
   font-size: 30px;
   cursor: pointer;
   text-align: right;
+  z-index: 100;
 }
 
 .category-list {

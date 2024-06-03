@@ -8,6 +8,7 @@ import ItemListPage from '../components/Pages/ItemListPage.vue';
 import MapPage from '../components/Pages/MapPage.vue';
 import LoginAtom from '../components/Atoms/LoginAtom.vue';
 import RegisterAtom from '../components/Atoms/RegisterAtom.vue';
+import EditAtom from '../components/Atoms/EditAtom.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,11 @@ const router = createRouter({
           path: 'register',
           name: 'register',
           component: RegisterAtom,
+        },
+        {
+          path: 'edit',
+          name: 'edit',
+          component: EditAtom,
         },
         {
           path: 'news',

@@ -1,7 +1,6 @@
 <template>
     <div class="login">
         <h1>Login</h1>
-        <input type="text" v-model="username" placeholder="Username" />
         <input type="email" v-model="email" placeholder="Email" />
         <input type="password" v-model="password" placeholder="Password" />
         <div class="buttons">
@@ -16,15 +15,48 @@
     import { useRouter } from 'vue-router';
     import ButtonAtom from './ButtonAtom.vue';
 
-    const username = ref('');
     const email = ref('');
     const password = ref('');
     const router = useRouter();
 
     const emits = defineEmits(['click']);
 
-    const login = () => {
-        
+    const login = async () => {
+        const userData = {
+            email: email.value,
+            password: password.value,
+        };
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+            });
+
+            const result = await response.json();
+            console.log('Registro exitoso:', result);
+
+            if(result.status === 'Login Ok'){
+                console.log('Usuario registrado exitosamente');
+                localStorage.setItem('data', JSON.stringify(result.data)); // Convertir a JSON antes de almacenar
+                console.log(result.data);
+                router.push({ name: 'home' });
+            }
+
+
+            // if(result.status === 'error'){
+            //     console.log(errors.value)
+            //     errors.value = result.message;
+            //     error.value = true;
+            // }
+
+
+        } catch (error) {
+            console.error('Error al registrar el usuario:', error);
+        }
     };
 
     const cancel = () => {
