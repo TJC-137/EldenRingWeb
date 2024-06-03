@@ -148,13 +148,15 @@
 
   .carousel-track {
     display: flex; /* Flexbox for organizing the items */
+    margin-left: 3.5%;
     transition: transform 0.5s ease-in-out; /* Transition for smooth scrolling */
   }
 
   .carousel-item {
     flex: 0 0 auto; /* Flexbox for each item */
     width: 280px; /* Width of each item */
-    margin-right: 10.5px; /* Margin between each item */
+    margin-right: 5px; /* Margin between each item */
+    margin-left: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transitions for hover effects */
   }
 
@@ -191,39 +193,18 @@
 
   @media screen and (max-width: 1024px) {
     .carousel {
-      width: 70%; 
+      width: 80%; 
     }
   }
 
   @media screen and (max-width: 768px) {
-    .carousel {
-      width: 60%; 
-      height: 100%;
-      overflow: hidden; /* Hides the overflowing content */
-      display: relative; /* Display as table */
-      table-layout: fixed; /* Fixed table layout */
-      align-items: center; /* Center the carousel */
-      justify-content: center; /* Center the carousel */
-    }
-    
-    .categories-container {
-      display: flex; 
-      flex-direction: column; 
-      align-items: center;  
-      justify-content: center;
-      width: 100%; 
-      margin: 2%;
-    }
 
-    .carousel-track {
-      justify-content: center; /* Center the items */
+    .carousel {
+      width: 80%; 
     }
 
     .carousel-item {
-      display: grid;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      margin-left: 3%;
     }
 
     .dots {

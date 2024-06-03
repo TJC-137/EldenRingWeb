@@ -712,7 +712,7 @@
   }
 
   .spec-details p.Magic::before {
-    background-image: url('../../assets/Icons/Mag.png');
+    background-image: url('../../assets/Icons/Magic.png');
   }
 
   .spec-details p.Mag::before {

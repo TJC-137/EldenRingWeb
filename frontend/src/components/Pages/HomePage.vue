@@ -62,6 +62,8 @@ const goToSection = (index: number) => {
 .carousel {
   width: 80%;
   overflow: hidden;
+  margin-left: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .carousel-track {
@@ -98,6 +100,7 @@ const goToSection = (index: number) => {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-right: 1rem;
 }
 
 .dot {
@@ -180,7 +183,11 @@ const goToSection = (index: number) => {
   .carousel {
     width: 100%;
   }
-  
+
+  .dots {
+    margin-left: 2rem;
+  }
+
 }
 
 </style>

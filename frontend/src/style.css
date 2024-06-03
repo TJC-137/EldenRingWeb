@@ -14,7 +14,6 @@ body {
 }
 
 
-
 /* Cambiar el color de la barra de desplazamiento en navegadores web */
 ::-webkit-scrollbar {
   width: 3.5px; /* Ancho de la barra de desplazamiento */

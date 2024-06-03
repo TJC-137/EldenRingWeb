@@ -81,8 +81,11 @@ const goToHomePage = () => {
   width: 100%;
 }
 
+
 #content {
   height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes fadeOut {
@@ -113,5 +116,18 @@ const goToHomePage = () => {
   .search-bar-container {
     margin-top: 10px;
   }
+  .panel {
+    max-width: 90%;
+    width: 90%;
+    max-height: 83%;
+    overflow-y: auto;
+  }
+
+  #content {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
 </style>
