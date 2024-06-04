@@ -40,6 +40,17 @@ onMounted(() => {
   width: 20rem;
   cursor: pointer;
   z-index: 100;
+  transition: transform 0.5s ease-in-out;
 }
 
+.title:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    width: 15rem;
+  }
+  
+}
 </style>

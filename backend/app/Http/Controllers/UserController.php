@@ -104,7 +104,7 @@ class UserController extends Controller
         if ($user) {
             $user->name = $request->input('name');
             $user->save();
-            return response()->json(['status' => 'success', 'data' => $user], 200);
+            return response()->json(['status' => 'success', 'data' => $user], 200, [], JSON_UNESCAPED_SLASHES);
         }
     }
 
@@ -134,7 +134,7 @@ class UserController extends Controller
                     if ($request->file('foto')->move($destination_path, $image)) {
                     $user->url = url('upload/img/' . $image);
                     $user->save();
-                    return response()->json(['status' => 'success', 'data' => $user], 200);
+                    return response()->json(['status' => 'success', 'data' => $user], 200, [], JSON_UNESCAPED_SLASHES);
                 }}
 
             } else {
@@ -149,7 +149,7 @@ class UserController extends Controller
         if ($user) {
             $user->email = $request->input('email');
             $user->save();
-            return response()->json(['status' => 'success', 'data' => $user], 200);
+            return response()->json(['status' => 'success', 'data' => $user], 200, [], JSON_UNESCAPED_SLASHES);
         }
     }
 
@@ -160,12 +160,12 @@ class UserController extends Controller
         if ($user) {
             $user->password = Hash::make($request->input('password'));
             $user->save();
-            return response()->json(['status' => 'success', 'data' => $user], 200);
+            return response()->json(['status' => 'success', 'data' => $user], 200, [], JSON_UNESCAPED_SLASHES);
         }
     }
 
 
-    
+
     /**
      * Update the specified resource in storage.
      */

@@ -39,7 +39,7 @@ window.addEventListener('scroll', () => {
   right: 0;
   height: 60px;
   color: #fff;
-  z-index: 1000;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -23,7 +23,10 @@
           <input type="file" @change="handleFileChange" id="photo" />
         </div>
   
-        <button type="submit">Save Changes</button>
+        <div class="buttons">
+            <button type="submit" class="save">Save Changes</button>
+            <button type="button" class="cancel" @click="cancelEdit">Cancel</button>
+        </div>
       </form>
     </div>
   </template>
@@ -32,7 +35,6 @@
 
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
-    import ButtonAtom from './ButtonAtom.vue';
 
     const id = ref(0);
 
@@ -53,20 +55,28 @@
       name: '',
       email: '',
       password: '',
-      photo: null,
+      photo: null as File | null,
     });
 
     const handleFileChange = (event: Event) => {
-    //   const file = (event.target as HTMLInputElement).files?.[0];
-    //   if (file) {
-    //     formData.value.photo = file;
-    //   }
+        const file = (event.target as HTMLInputElement).files?.[0];
+        if (file) {
+            formData.value.photo = file;
+        }
+    };
+
+    const cancelEdit = () => {
+        router.push('/');
     };
 
     const submitForm = () => {
       updateName(formData.value);
+      updateEmail(formData.value);
+      updatePassword(formData.value);
+      updatePhoto(formData.value);
     };
 
+    // Update Name
     const updateName = async (formData : any) => {
       const userData = {
             name: formData.name,
@@ -84,6 +94,13 @@
             const result = await response.json();
             console.log('Registro exitoso:', result);
 
+            if(result.status === 'success'){
+                console.log('Usuario editado exitosamente');
+                localStorage.setItem('data', JSON.stringify(result.data)); // Convertir a JSON antes de almacenar
+                console.log(result.data);
+                router.push({ name: 'home' });
+            }
+
             
             // if(result.status === 'error'){
             //     console.log(errors.value)
@@ -92,6 +109,112 @@
             // }
 
 
+        } catch (error) {
+            console.error('Error al editar el usuario:', error);
+        }
+    };
+
+    // Update Email
+    const updateEmail = async (formData : any) => {
+      const userData = {
+            email: formData.email,
+        };
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/users/email/' + id.value + '', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+            });
+
+            const result = await response.json();
+            console.log('Registro exitoso:', result);
+
+            if(result.status === 'success'){
+                console.log('Usuario editado exitosamente');
+                localStorage.setItem('data', JSON.stringify(result.data)); // Convertir a JSON antes de almacenar
+                console.log(result.data);
+                router.push({ name: 'home' });
+            }
+
+            
+            // if(result.status === 'error'){
+            //     console.log(errors.value)
+            //     errors.value = result.message;
+            //     error.value = true;
+            // }
+
+
+        } catch (error) {
+            console.error('Error al editar el usuario:', error);
+        }
+    };
+
+    // Update Password
+    const updatePassword = async (formData : any) => {
+      const userData = {
+            password: formData.password,
+        };
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/users/password/' + id.value + '', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+            });
+
+            const result = await response.json();
+            console.log('Registro exitoso:', result);
+
+            if(result.status === 'success'){
+                console.log('Usuario editado exitosamente');
+                localStorage.setItem('data', JSON.stringify(result.data)); // Convertir a JSON antes de almacenar
+                console.log(result.data);
+                router.push({ name: 'home' });
+            }
+
+            
+            // if(result.status === 'error'){
+            //     console.log(errors.value)
+            //     errors.value = result.message;
+            //     error.value = true;
+            // }
+
+
+        } catch (error) {
+            console.error('Error al editar el usuario:', error);
+        }
+    };
+
+    // Update photo
+
+    const updatePhoto = async (formData: any) => {
+        const userData = new FormData();
+        if (formData.photo) {
+            userData.append('foto', formData.photo);
+        }
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/users/img/' + id.value + '', {
+                method: 'POST', // Cambiado a POST para manejar archivos
+                body: userData,
+            });
+
+            const result = await response.json();
+            console.log('Registro exitoso:', result);
+
+            if (result.status === 'success') {
+                console.log('Usuario editado exitosamente');
+                localStorage.setItem('data', JSON.stringify(result.data)); // Convertir a JSON antes de almacenar
+                console.log(result.data);
+                router.push({ name: 'home' }).then(() => {
+                    window.location.reload(); // Recargar la página
+                });
+            }
         } catch (error) {
             console.error('Error al editar el usuario:', error);
         }
@@ -122,6 +245,33 @@
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .buttons button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #cabba2;
+        background-color: #1f1f1f;
+        color: #dccbaf;
+        cursor: pointer;
+    }
+
+    .save:hover {
+        background-color: #131313de;
+        color: #48972b;
+        border: 1px solid #48972b;
+    }
+
+    .cancel:hover {
+        background-color: #131313de;
+        color: #c42323;
+        border: 1px solid #c42323;
     }
 
 

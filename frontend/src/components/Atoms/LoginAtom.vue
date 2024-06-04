@@ -3,9 +3,14 @@
         <h1>Login</h1>
         <input type="email" v-model="email" placeholder="Email" />
         <input type="password" v-model="password" placeholder="Password" />
+        <div v-if="error" class="errors">
+            <ul>
+                <li v-for="(err, index) in errors" :key="index">{{ err }}</li>
+            </ul>
+        </div>
         <div class="buttons">
             <ButtonAtom className="custom-button" text="Login" @click="login()"/>
-            <ButtonAtom className="custom-button" text="Cancel" @clcik="cancel()"/>
+            <ButtonAtom className="custom-button" text="Cancel" @click="cancelLogin()"/>
         </div>
     </div>
 </template>
@@ -17,6 +22,8 @@
 
     const email = ref('');
     const password = ref('');
+    const errors = ref([]);
+    const error = ref(false);
     const router = useRouter();
 
     const emits = defineEmits(['click']);
@@ -30,9 +37,7 @@
         try {
             const response = await fetch('http://127.0.0.1:8000/api/users/login', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: {'Content-Type': 'application/json',},
             body: JSON.stringify(userData),
             });
 
@@ -59,8 +64,8 @@
         }
     };
 
-    const cancel = () => {
-        // router.push('/');
+    const cancelLogin = () => {
+        router.push('/');
     };
 
 </script>

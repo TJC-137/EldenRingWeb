@@ -1,8 +1,10 @@
 <template>
     <div class="map-page"  tabindex="0">
-        <div >
-            <iframe src="https://mapgenie.io/elden-ring/maps/the-lands-between?embed=light" class="map"></iframe></div>
-        <div v-html="mapContent"></div>
+        <div class="map-container" >
+            <iframe class="map" 
+                src="https://mapgenie.io/elden-ring/maps/the-lands-between?embed=light">
+            </iframe>
+        </div>
     </div>
 </template>
 
@@ -27,10 +29,30 @@
 
 }
 
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 /* Estilo adicional para mejorar la presentación */
 .map-page {
     background-color: #000; /* Fondo oscuro para contrastar con las imágenes del mapa */
     gap: 10px;
+}
+
+/* Estilo adicional para mejorar la presentación */
+
+@media screen and (max-width: 1024px) {
+    .map {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .map {
+        width: 100%;
+    }
 }
 
 </style>

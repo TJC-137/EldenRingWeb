@@ -69,6 +69,7 @@ watchEffect(() => {
   padding: 20px;
   margin: 20px;
   display: table;
+  transition: transform 0.3s ease-in-out;
 }
 
 h2 {
@@ -76,6 +77,11 @@ h2 {
   text-align: center;
   text-shadow: 10% 10% 10% #3a3a3a;
   font-size: 28px;
+}
+
+.box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes fadeIn {

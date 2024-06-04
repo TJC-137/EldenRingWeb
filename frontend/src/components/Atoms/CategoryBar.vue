@@ -3,6 +3,10 @@
     <div class="header-logo">
       <div class="menu-icon" @click="closeMenu">
         <img :src="userImg" class="logo" />
+        <p class="username">
+          <span class="icon" :class="{ 'grayscale': !loggedIn }"></span>
+          {{ userName }}
+        </p>
       </div>
       <div class="close-btn" @click="closeMenu">×</div>
     </div>
@@ -27,6 +31,16 @@
         </div>
       </li>
     </ul>
+
+    <div class="spotify" v-if="loggedIn">
+      <iframe src="https://open.spotify.com/embed/album/2gCFzRRO5acruR4y4QhIuI?utm_source=generator" 
+      style="border-radius:12px"
+      width="100%" height="352" 
+      frameBorder="0" 
+      allowfullscreen="true" 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+      loading="lazy"></iframe>
+    </div>
   </div>
 </template>
 
@@ -42,6 +56,7 @@ const props = defineProps<{
 
 const loggedIn = ref(false);
 const userImg = ref("http://127.0.0.1:8000/upload/img/avatar.png");
+const userName = ref("");
 
 const emits = defineEmits(['closeMenu']);
 
@@ -103,21 +118,30 @@ const logout = () => {
 
 // Load user data from local storage
 const loadUserData = () => {
-  const data = localStorage.getItem('data');
-  console.log(data); // Parsear la cadena JSON a un objeto (data);
+  const data = localStorage.getItem('data'); // Get user data from local storage
+  console.log(data);
   if (data) {
-    try {     
-      const parsedData = JSON.parse(data); // Parsear la cadena JSON a un objeto
+    try {    
+      // Parsear la cadena JSON a un objeto
+      const parsedData = JSON.parse(data); 
       console.log(parsedData);
+
+      // Get user img
       const url = parsedData.url; 
       console.log(url);
       userImg.value = url; 
+
+      // Get user name
+      const name = parsedData.name;
+      userName.value = name;
+
     } catch (error) {
       console.error('Failed to parse data:', error);
     }
     loggedIn.value = true;
   }
 };
+
 
 // Load user data when the component is mounted
 onMounted(() => {
@@ -128,6 +152,7 @@ onMounted(() => {
 watch(route, (newRoute) => {
   loadUserData();
 });
+
 </script>
 
 <style scoped>
@@ -191,6 +216,68 @@ watch(route, (newRoute) => {
 .category-list .item img {
   width: 50px;
   height: 50px;
+}
+
+.category-list .item:hover {
+  background-color: #333;
+}
+
+.category-list .item:hover img {
+  scale: 1.15;
+}
+
+.category-list .item:hover p {
+  color: #e1c680;
+  margin-left: 10px;
+}
+
+.menu-icon img{
+  width: 52px;
+  height: 52px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin-left: 0.1rem;
+  border: 2px solid #fff;
+}
+
+.menu-icon img:hover {
+  border: 2px solid #e1c680;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.username:hover {
+  color: #e1c680;
+}
+
+.icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url('../../assets/Icons/online.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.spotify {
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .category-bar.show {
+    width: -webkit-fill-available;
+  }
 }
 
 @media screen and (max-width: 768px) {
