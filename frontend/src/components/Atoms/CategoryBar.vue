@@ -4,7 +4,7 @@
       <div class="menu-icon" @click="closeMenu">
         <img :src="userImg" class="logo" />
         <p class="username">
-          <span class="icon" :class="{ 'grayscale': !loggedIn }"></span>
+          <span class="icon" :class="{ 'grayscale': !loggedIn }" alt="status"></span>
           {{ userName }}
         </p>
       </div>

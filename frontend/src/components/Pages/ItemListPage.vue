@@ -81,5 +81,33 @@
   .item:hover {
     background-color: #333;
   }
+
+  @media screen and (max-width: 1440px) {
+    .item-list-page {
+      width: 90%;
+    }
+    
+  }
+
+  @media screen and (max-width: 1280px) {
+    .item-list-page {
+      width: 90%;
+    }
+    
+  }
+
+  @media screen and (max-width: 1024px) {
+    .item-list-page {
+      width: 90%;
+    }
+    
+  }
+
+  @media screen and (max-width: 768px) {
+    .item-list-page {
+      width: 90%;
+    }
+    
+  }
   </style>
   

@@ -4,22 +4,22 @@
       <form @submit.prevent="submitForm">
 
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name">New Name</label>
           <input type="text" v-model="formData.name" id="name" required />
         </div>
   
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">New Email</label>
           <input type="email" v-model="formData.email" id="email" required />
         </div>
   
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">New Password</label>
           <input type="password" v-model="formData.password" id="password" required />
         </div>
   
         <div class="form-group">
-          <label for="photo">Photo</label>
+          <label for="photo">New Photo</label>
           <input type="file" @change="handleFileChange" id="photo" />
         </div>
   

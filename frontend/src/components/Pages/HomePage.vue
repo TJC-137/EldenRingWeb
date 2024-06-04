@@ -182,10 +182,11 @@ const goToSection = (index: number) => {
 
   .carousel {
     width: 100%;
+    margin-left: 3rem;
   }
 
   .dots {
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
 
 }
