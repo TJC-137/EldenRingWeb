@@ -410,6 +410,23 @@
           </div>
 
         </div>
+
+          <!-- Comments Section -->
+          <div class="comments-section">
+            <!-- Add Comment -->
+            <div class="add-comment">
+              <h4>Add a comment</h4>
+              <input type="text" v-model="newComment.text" placeholder="Write your comment..." />
+              <button @click="addComment">Comment</button>
+            </div>
+
+            <h3>Comments</h3>
+            <div v-for="(comment,i) in CommentsData" :key="i">
+              
+              <CommentAtom :comment="comment" />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -422,11 +439,19 @@
 </template>
 
 <script setup lang="ts">
-  import { defineProps, watchEffect } from 'vue';
+  import { defineProps, watchEffect, ref, onMounted } from 'vue';
   import BoxAtom from '../Atoms/BoxAtom.vue';
   import { useItemDetails } from '../../api/composables/useItemDetails';
   import { useRouter } from 'vue-router';
+  import CommentAtom from '../Atoms/CommentAtom.vue';
 
+  interface Comment {
+    
+    commentId: number,
+    userImage: string,
+    userName: string,
+    text: string
+  }
   const props = defineProps<{
     category: string;
     itemName: string;
@@ -435,6 +460,15 @@
 
   const { item, foundItems, fetchItemDetails, fetchItemById } = useItemDetails();
   const router = useRouter();
+  const comments = ref([]);
+  const newComment = ref([{
+    commentId: '',
+    userImage: '',
+    userName: '',
+    text: ''
+  }]);
+  const userIds = ref([]);
+  const CommentsData = ref<Comment[]>([]);
 
 
   const selectItem = (selectedItem: any) => {
@@ -443,19 +477,121 @@
       name: 'itemDetails',
       params: {
         category: props.category,
+        itemId: selectedItem.id,
         itemName: selectedItem.name
       }
     });
   };
 
+  
+
   watchEffect(() => {
     if (props.itemId) {
       fetchItemById(props.category, props.itemId);
+      
     } else {
       fetchItemDetails(props.category, props.itemName);
     }
     console.log('Calling fetchItemDetails with:', props.category, props.itemName);
   });
+
+
+  const loadUserData = () => {
+    const data = localStorage.getItem('data'); // Get user data from local storage
+    if (data) {
+      try {
+        const parsedData = JSON.parse(data);
+
+        newComment.value.userImage = parsedData.url;
+        newComment.value.userName = parsedData.name;
+      } catch (error) {
+        console.error('Failed to parse data:', error);
+      }
+    }
+  };
+
+  const fetchComments = async (itemId: string) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/comments/item/${itemId}`);
+      const result = await response.json();
+      
+      if (result.status === 'success') {
+        comments.value = result.data;
+        
+        comments.value.map((comment: any) => {
+          
+          
+          
+            
+            fetch(`http://127.0.0.1:8000/api/users/${comment.user_id}`)
+              .then(response => response.json())
+              .then(data => {
+
+                
+                console.log(data);
+                
+                const newCommentData = {
+                  commentId: comment.id,
+                  userImage: data.data.url,
+                  userName: data.data.name,
+                  text: comment.comment
+                }
+                // CommentsData.value.userName = data.data.name;
+                // CommentsData.value.userImage = data.data.url;
+
+                
+                CommentsData.value.push(newCommentData);
+                CommentsData.value.sort((a, b) => b.commentId - a.commentId);
+              })
+              .catch(error => console.error(error));
+          
+          console.log(userIds.value);
+        })
+        
+        console.log(CommentsData.value);
+      } 
+    } catch (error) {
+      console.error('Failed to fetch comments:', error);
+    }
+  };
+
+  const addComment = async () => {
+    if (newComment.value.text.trim() !== '') {
+      try {
+        const data = localStorage.getItem('data');
+        if (!data) {
+          throw new Error('User not logged in');
+        }
+        const userData = JSON.parse(data);
+        
+        const response = await fetch('http://127.0.0.1:8000/api/comments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            comment: newComment.value.text,
+            itemId: props.itemId,
+            user_id: userData.id
+          })
+        });
+
+        const result = await response.json();
+        if (result.status === 'success') {
+          
+          
+        }
+      } catch (error) {
+        console.error('Failed to add comment:', error);
+      }
+    }
+  };
+
+  onMounted(() => {
+    loadUserData();  
+    fetchComments(props.itemId); 
+  });
+
 </script>
 
 <style scoped>

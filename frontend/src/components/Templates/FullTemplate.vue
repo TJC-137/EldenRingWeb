@@ -99,6 +99,13 @@ const goToHomePage = () => {
   100% { opacity: 1; }
 }
 
+@media screen and (max-width: 1440px) {
+  .panel {
+    max-width: 70%;
+  }
+
+}
+
 @media screen and (max-width: 1280px) {
   .panel {
     max-width: 70%;

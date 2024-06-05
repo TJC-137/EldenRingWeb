@@ -1,0 +1,23 @@
+[
+    {
+        "id": 3,
+        "image": "/newsImages/shadow.webp",
+        "title": "New DLC Shadow Of The Erdtree",
+        "content": "Detailed content of the news 3."
+    },
+    {
+        "id": 2,
+        "image": "/newsImages/ShadowOfTheErdtree.webp",
+        "title": "Concept Art from Shadow Of The Erdtree",
+        "content": "Detailed content of the news 2."
+    },
+    {
+      "id": 1,
+      "image": "/newsImages/Miquella.webp",
+      "title": "Will you walk with us?",
+      "content": "Detailed content of the news 1."
+    }
+    
+    
+  ]
+  

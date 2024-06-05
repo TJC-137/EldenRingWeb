@@ -25,8 +25,15 @@ Route::group(['prefix' => 'users'], function () {
     
 Route::get('users', [UserController::class, 'index']);
 
+Route::group(['prefix' => 'comments'], function () {
+    Route::get('', [CommentController::class, 'index']);
+    Route::post('', [CommentController::class, 'store']);
+    Route::get('{id}', [CommentController::class, 'show']);
+    Route::get('item/{itemId}', [CommentController::class, 'showCommentsForItem']);
 
-Route::get('comments', [CommentController::class, 'index']);
+});
+
+
 
 
 Route::get('favorites', [FavoriteController::class, 'index']);
