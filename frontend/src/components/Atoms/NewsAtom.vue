@@ -51,4 +51,5 @@ const toggleContent = () => {
   padding: 30px;
   border: 2px solid #aaa;
 }
+
 </style>

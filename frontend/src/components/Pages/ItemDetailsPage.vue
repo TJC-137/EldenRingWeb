@@ -421,9 +421,9 @@
             </div>
 
             <h3>Comments</h3>
-            <div v-for="(comment,i) in CommentsData" :key="i">
+            <div v-for="(comment,id) in CommentsData" :key="id">
               
-              <CommentAtom :comment="comment" />
+              <CommentAtom :comment="comment" :key="id" />
             </div>
           </div>
 
@@ -477,7 +477,6 @@
       name: 'itemDetails',
       params: {
         category: props.category,
-        itemId: selectedItem.id,
         itemName: selectedItem.name
       }
     });
@@ -518,11 +517,7 @@
       if (result.status === 'success') {
         comments.value = result.data;
         
-        comments.value.map((comment: any) => {
-          
-          
-          
-            
+        comments.value.map((comment: any) => {           
             fetch(`http://127.0.0.1:8000/api/users/${comment.user_id}`)
               .then(response => response.json())
               .then(data => {
@@ -536,9 +531,6 @@
                   userName: data.data.name,
                   text: comment.comment
                 }
-                // CommentsData.value.userName = data.data.name;
-                // CommentsData.value.userImage = data.data.url;
-
                 
                 CommentsData.value.push(newCommentData);
                 CommentsData.value.sort((a, b) => b.commentId - a.commentId);
@@ -579,7 +571,8 @@
         const result = await response.json();
         if (result.status === 'success') {
           
-          
+        } else {
+          console.error('Failed to add comment:', result.message);         
         }
       } catch (error) {
         console.error('Failed to add comment:', error);
@@ -727,6 +720,47 @@
 
   .spec-details p {
     margin-bottom: 5px;
+  }
+
+  .comments-section {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #e1c680;
+    font-size: 14px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    animation: popIn 1s ease-out;
+  }
+
+  .add-comment {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #e1c680;
+    font-size: 14px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    border: #e1c680 1px solid;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    gap: 10px;
+    animation: popIn 1s ease-out;
+  }
+
+  .add-comment input {
+    flex-grow: 1;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: #e1c680;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
   }
 
     /* DAMAGE */
@@ -1184,6 +1218,7 @@
     .item-details {
       width: 90%;
     }
+
   }
 
   @media screen and (max-width: 768px) {
