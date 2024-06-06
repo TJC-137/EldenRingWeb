@@ -28,6 +28,24 @@ export function useItemDetails() {
     }
   };
 
+  const fetchFavoriteItemDetails = async (category: string, itemId: string) => {
+    try {
+      const endpointCategory = getEndpointCategory(category);
+      const url = `https://eldenring.fanapis.com/api/${endpointCategory}/${itemId}`;
+      console.log('Fetching item details from URL:', url);
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Error al obtener los detalles del ítem');
+      }
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching item details:', error);
+      return null;
+    }
+  };
+
   const fetchItemById = async (category: string, itemId: string) => {
     try {
       const endpointCategory = getEndpointCategory(category);
@@ -64,5 +82,5 @@ export function useItemDetails() {
     return categoryMap[category.toLowerCase()] || category.toLowerCase();
   };
 
-  return { item, foundItems, fetchItemDetails, fetchItemById };
+  return { item, foundItems, fetchItemDetails, fetchItemById, fetchFavoriteItemDetails };
 }

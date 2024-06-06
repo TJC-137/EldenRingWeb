@@ -21,7 +21,15 @@
           :itemName="item.name" 
           :imageUrl="item.image" 
           className="box" />
+
+          <div class="favorite-icon" v-if="loggedIn" @click="toggleFavorite">
+            <img v-if="isFavorite" src="../../assets/Icons/favOff.png" alt="Remove from favorites" />
+            <img v-else src="../../assets/Icons/favOn.png" alt="Add to favorites" />
+          </div>
+
         <div class="item-text">
+
+          
           
         <div class="spec-details">
 
@@ -450,18 +458,11 @@
   import { useRouter } from 'vue-router';
   import CommentAtom from '../Atoms/CommentAtom.vue';
 
-  interface Comment { 
-    commentId: number,
-    userImage: string,
-    userName: string,
-    text: string
-  }
-  const props = defineProps<{
-    category: string;
-    itemName: string;
-    itemId?: string;
-  }>();
-
+  const userIds = ref([]);
+  const loggedIn = ref(false);
+  const isFavorite = ref(false);
+  const CommentsData = ref<Comment[]>([]);
+  const defaultUserImage = 'http://127.0.0.1:8000/upload/img/avatar.png';
   const { item, foundItems, fetchItemDetails, fetchItemById } = useItemDetails();
   const router = useRouter();
   const comments = ref([]);
@@ -469,11 +470,22 @@
     commentId: '',
     userImage: '',
     userName: '',
-    text: ''
+    text: '',
   }]);
-  const userIds = ref([]);
-  const CommentsData = ref<Comment[]>([]);
-  const defaultUserImage = 'http://127.0.0.1:8000/upload/img/avatar.png';
+  
+  const props = defineProps<{
+    category: string;
+    itemName: string;
+    itemId?: string;
+  }>();
+  // Comments
+  interface Comment { 
+    commentId: number,
+    userImage: string,
+    userName: string,
+    text: string
+  }
+
 
   const selectItem = (selectedItem: any) => {
     fetchItemById(props.category, selectedItem.id);
@@ -485,6 +497,91 @@
       }
     });
   };
+
+
+    // Función para comprobar si el item está en favoritos
+    const checkIfFavorite = () => {
+      if (!loggedIn.value) return;
+      const userData = JSON.parse(localStorage.getItem('data') || '{}');
+      fetch(`http://127.0.0.1:8000/api/favorites/user/${userData.id}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+              // Asegúrate de que estás comparando con el campo correcto
+              isFavorite.value = data.data.some((favorite: any) => favorite.itemId === props.itemId);
+          }
+        })
+          .catch(error => {
+          console.error('Error checking if favorite:', error);
+        }
+      );
+    };
+
+
+    const toggleFavorite = async () => {
+    if (!loggedIn.value) return;
+
+    const userData = JSON.parse(localStorage.getItem('data') || '{}');
+    console.log('Toggle favorite:', { user_id: userData.id, category: props.category, itemId: props.itemId });
+
+    try {
+        if (isFavorite.value) {
+            // Remove favorite
+            const favoriteId = await findFavoriteId();
+            console.log('Removing favorite with ID:', favoriteId);
+            if (favoriteId) {
+                const response = await fetch(`http://127.0.0.1:8000/api/favorites/${favoriteId}`, {
+                    method: 'DELETE',
+                });
+                if (response.ok) {
+                    console.log('Favorite removed successfully');
+                } else {
+                    const errorData = await response.json();
+                    console.error('Error removing favorite:', errorData);
+                }
+            } else {
+                console.error('Favorite ID not found');
+            }
+        } else {
+            // Add favorite
+            console.log('Adding favorite');
+            const response = await fetch('http://127.0.0.1:8000/api/favorites', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: userData.id,
+                    category: props.category,
+                    itemId: props.itemId,
+                })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                console.log('Favorite added successfully');
+            } else {
+                if (result.message === 'Favorite already exists') {
+                    console.log('Favorite already exists');
+                    isFavorite.value = true; // Asegura que el estado de favorito se mantenga correcto
+                } else {
+                    console.error('Error adding favorite:', result);
+                }
+            }
+        }
+        isFavorite.value = !isFavorite.value;
+    } catch (error) {
+        console.error('Error in toggleFavorite:', error);
+    }
+};
+
+
+const findFavoriteId = async () => {
+    const userData = JSON.parse(localStorage.getItem('data') || '{}');
+    const response = await fetch(`http://127.0.0.1:8000/api/favorites/user/${userData.id}`);
+    const data = await response.json();
+    const favorite = data.data.find((favorite: any) => favorite.itemId === props.itemId && favorite.user_id === userData.id);
+    return favorite ? favorite.id : null;
+};
 
   
   watchEffect(() => {
@@ -511,6 +608,10 @@
     } else {
       newComment.value.userImage = defaultUserImage;
       newComment.value.userName = 'Anonymous';
+    }
+
+    if(data) {
+      loggedIn.value = true;
     }
   };
 
@@ -605,6 +706,7 @@
   onMounted(() => {
     loadUserData();  
     fetchComments(props.itemId); 
+    checkIfFavorite();
   });
 
 </script>
@@ -750,6 +852,12 @@
 
   .spec-details p {
     margin-bottom: 5px;
+  }
+
+  .favorite-icon {
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 1rem;
   }
 
   .comments-section {

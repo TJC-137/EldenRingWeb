@@ -34,6 +34,16 @@ Route::group(['prefix' => 'comments'], function () {
 });
 
 
+Route::group(['prefix' => 'favorites'], function () {
+    Route::get('', [FavoriteController::class, 'index']); // Obtener todos los favoritos
+    Route::post('', [FavoriteController::class, 'store']); // Crear un nuevo favorito
+    Route::get('{id}', [FavoriteController::class, 'show']); // Mostrar un favorito específico
+    Route::put('{id}', [FavoriteController::class, 'update']); // Actualizar un favorito específico
+    Route::delete('{id}', [FavoriteController::class, 'destroy']);
+    Route::get('user/{userId}', [FavoriteController::class, 'getFavoritesByUser']); // Obtener favoritos por usuario
+});
 
 
-Route::get('favorites', [FavoriteController::class, 'index']);
+
+
+?>

@@ -6,6 +6,7 @@
         <p class="username">
           <span class="icon" :class="{ 'grayscale': !loggedIn }" alt="status"></span>
           {{ userName }}
+          <button class="favorite-btn" v-if="loggedIn" @click="goToFavorites">📜</button>
         </p>
       </div>
       <div class="close-btn" @click="closeMenu">×</div>
@@ -82,6 +83,10 @@ const route = useRoute();
 const handleCategoryClick = (category: string) => {
   router.push({ name: 'categories', params: { category: category } });
   emits('closeMenu');
+};
+
+const goToFavorites = () => {
+  router.push({ name: 'favorites' });
 };
 
 // Close menu
@@ -268,6 +273,31 @@ watch(route, (newRoute) => {
 
 .grayscale {
   filter: grayscale(100%);
+}
+
+.close-btn {
+  position: absolute;
+  top: 2.5%;
+  right: 5%;
+  font-size: 30px;
+  cursor: pointer;
+  text-align: right;
+  z-index: 100;
+}
+
+.close-btn:hover {
+  color: #e1c680;
+}
+
+.favorite-btn {
+  background-color: transparent;
+  border: none;
+  color: #e1c680;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+  filter: sepia(50%) saturate(70%); 
+  transition: filter 0.3s ease-in-out;
 }
 
 .spotify {

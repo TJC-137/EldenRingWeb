@@ -184,6 +184,7 @@ const goToSection = (index: number) => {
     width: 100%;
     margin-left: 3rem;
   }
+  
 
   .dots {
     margin-left: 1rem;

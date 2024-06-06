@@ -133,7 +133,6 @@ const goToHomePage = () => {
   .panel {
     max-width: 90%;
     width: 90%;
-    height: 90%;
     max-height: 83%;
     overflow-y: auto;
   }

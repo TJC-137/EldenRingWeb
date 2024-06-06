@@ -9,6 +9,7 @@ import MapPage from '../components/Pages/MapPage.vue';
 import LoginAtom from '../components/Atoms/LoginAtom.vue';
 import RegisterAtom from '../components/Atoms/RegisterAtom.vue';
 import EditAtom from '../components/Atoms/EditAtom.vue';
+import FavoritesPage from '../components/Pages/FavoritesPage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +68,11 @@ const router = createRouter({
           path: 'search',
           name: 'itemList',
           component: ItemListPage,
+        },
+        {
+          path: 'favorites',  // Definimos la ruta para FavoritesPage
+          name: 'favorites',
+          component: FavoritesPage,
         },
       ],
     },
