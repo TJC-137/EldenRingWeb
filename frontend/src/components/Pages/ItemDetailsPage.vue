@@ -424,7 +424,7 @@
             <img :src="newComment.userImage || defaultUserImage" class="user-image" />         
             <button @click="addComment">Comment</button>
           </div>
-          <input type="text" v-model="newComment.text" placeholder="Write your comment..." />
+          <textarea v-model="newComment.text" placeholder="Write your comment..."></textarea>
         </div>
 
         <h3>Comments</h3>
@@ -514,38 +514,50 @@
     }
   };
 
-  const fetchComments = async (itemId: string) => {
+  const fetchComments = async (itemId) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/comments/item/${itemId}`);
       const result = await response.json();
+      
       if (result.status === 'success') {
         comments.value = result.data;
-        CommentsData.value = [];
-        for (const comment of comments.value) {
-          try {
-            const userResponse = await fetch(`http://127.0.0.1:8000/api/users/${comment.user_id}`);
-            const userData = await userResponse.json();
-            if (userData.status === 'success') {
-              const newCommentData: Comment = {
-                commentId: comment.id,
-                userImage: userData.data.url,
-                userName: userData.data.name,
-                text: comment.comment
-              };
-              CommentsData.value.push(newCommentData);
-            } else {
-              console.error('Failed to fetch user data');
-            }
-          } catch (error) {
-            console.error('Failed to fetch user data:', error);
+        
+        comments.value.forEach((comment) => {
+          if (comment.user_id) {
+            // Fetch user details if user_id is available
+            fetch(`http://127.0.0.1:8000/api/users/${comment.user_id}`)
+              .then(response => response.json())
+              .then(data => {
+                const newCommentData = {
+                  commentId: comment.id,
+                  userImage: data.data.url,
+                  userName: data.data.name,
+                  text: comment.comment
+                };
+                CommentsData.value.push(newCommentData);
+                CommentsData.value.sort((a, b) => b.commentId - a.commentId);
+              })
+              .catch(error => console.error(error));
+          } else {
+            // If user_id is not available, use default user info
+            const newCommentData = {
+              commentId: comment.id,
+              userImage: 'http://127.0.0.1:8000/upload/img/avatar.png', // default image
+              userName: 'Anonymous',
+              text: comment.comment
+            };
+            CommentsData.value.push(newCommentData);
+            CommentsData.value.sort((a, b) => b.commentId - a.commentId);
           }
-        }
-        CommentsData.value.sort((a, b) => b.commentId - a.commentId);
-      }
+        });
+
+        console.log(CommentsData.value);
+      } 
     } catch (error) {
       console.error('Failed to fetch comments:', error);
     }
   };
+
 
   const addComment = async () => {
     if (newComment.value.text.trim() !== '') {
@@ -779,7 +791,7 @@
     animation: popIn 1s ease-out;
   }
 
-  .add-comment input {
+  .add-comment textarea {
     width: 90%;
     height: 70px;
     flex-grow: 1;
