@@ -27,6 +27,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%;
   }
   
   .user-image {
@@ -50,5 +51,6 @@
     margin: 5px 0 0;
     font-size: 14px;
   }
+
   </style>
   

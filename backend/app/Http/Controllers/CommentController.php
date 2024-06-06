@@ -30,7 +30,7 @@ class CommentController extends Controller
         $rules = [
             'comment' => 'required|string',
             'itemId' => 'required|string',
-            'user_id' => 'required|exists:users,id'
+            //'user_id' => 'required|exists:users,id'
         ];
 
         $validator = Validator::make($request->all(), $rules);

@@ -411,24 +411,29 @@
 
         </div>
 
-          <!-- Comments Section -->
-          <div class="comments-section">
-            <!-- Add Comment -->
-            <div class="add-comment">
-              <h4>Add a comment</h4>
-              <input type="text" v-model="newComment.text" placeholder="Write your comment..." />
-              <button @click="addComment">Comment</button>
-            </div>
+        </div>
+        
+      </div>
 
-            <h3>Comments</h3>
-            <div v-for="(comment,id) in CommentsData" :key="id">
-              
-              <CommentAtom :comment="comment" :key="id" />
-            </div>
+      <!-- Comments Section -->
+      <div class="comments-section">
+        <!-- Add Comment -->
+        <h4>Add a comment</h4>
+        <div class="add-comment">
+          <div class="user-info">
+            <img :src="newComment.userImage || defaultUserImage" class="user-image" />         
+            <button @click="addComment">Comment</button>
           </div>
+          <input type="text" v-model="newComment.text" placeholder="Write your comment..." />
+        </div>
 
+        <h3>Comments</h3>
+        <div v-for="(comment,id) in CommentsData" :key="id">
+          
+          <CommentAtom :comment="comment" :key="id" />
         </div>
       </div>
+
     </div>
 
     <div v-else >
@@ -445,8 +450,7 @@
   import { useRouter } from 'vue-router';
   import CommentAtom from '../Atoms/CommentAtom.vue';
 
-  interface Comment {
-    
+  interface Comment { 
     commentId: number,
     userImage: string,
     userName: string,
@@ -469,7 +473,7 @@
   }]);
   const userIds = ref([]);
   const CommentsData = ref<Comment[]>([]);
-
+  const defaultUserImage = 'http://127.0.0.1:8000/upload/img/avatar.png';
 
   const selectItem = (selectedItem: any) => {
     fetchItemById(props.category, selectedItem.id);
@@ -483,7 +487,6 @@
   };
 
   
-
   watchEffect(() => {
     if (props.itemId) {
       fetchItemById(props.category, props.itemId);
@@ -496,16 +499,18 @@
 
 
   const loadUserData = () => {
-    const data = localStorage.getItem('data'); // Get user data from local storage
+    const data = localStorage.getItem('data');
     if (data) {
       try {
         const parsedData = JSON.parse(data);
-
-        newComment.value.userImage = parsedData.url;
-        newComment.value.userName = parsedData.name;
+        newComment.value.userImage = parsedData.url || defaultUserImage;
+        newComment.value.userName = parsedData.name || 'Anonymous';
       } catch (error) {
         console.error('Failed to parse data:', error);
       }
+    } else {
+      newComment.value.userImage = defaultUserImage;
+      newComment.value.userName = 'Anonymous';
     }
   };
 
@@ -513,35 +518,30 @@
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/comments/item/${itemId}`);
       const result = await response.json();
-      
       if (result.status === 'success') {
         comments.value = result.data;
-        
-        comments.value.map((comment: any) => {           
-            fetch(`http://127.0.0.1:8000/api/users/${comment.user_id}`)
-              .then(response => response.json())
-              .then(data => {
-
-                
-                console.log(data);
-                
-                const newCommentData = {
-                  commentId: comment.id,
-                  userImage: data.data.url,
-                  userName: data.data.name,
-                  text: comment.comment
-                }
-                
-                CommentsData.value.push(newCommentData);
-                CommentsData.value.sort((a, b) => b.commentId - a.commentId);
-              })
-              .catch(error => console.error(error));
-          
-          console.log(userIds.value);
-        })
-        
-        console.log(CommentsData.value);
-      } 
+        CommentsData.value = [];
+        for (const comment of comments.value) {
+          try {
+            const userResponse = await fetch(`http://127.0.0.1:8000/api/users/${comment.user_id}`);
+            const userData = await userResponse.json();
+            if (userData.status === 'success') {
+              const newCommentData: Comment = {
+                commentId: comment.id,
+                userImage: userData.data.url,
+                userName: userData.data.name,
+                text: comment.comment
+              };
+              CommentsData.value.push(newCommentData);
+            } else {
+              console.error('Failed to fetch user data');
+            }
+          } catch (error) {
+            console.error('Failed to fetch user data:', error);
+          }
+        }
+        CommentsData.value.sort((a, b) => b.commentId - a.commentId);
+      }
     } catch (error) {
       console.error('Failed to fetch comments:', error);
     }
@@ -551,11 +551,11 @@
     if (newComment.value.text.trim() !== '') {
       try {
         const data = localStorage.getItem('data');
-        if (!data) {
-          throw new Error('User not logged in');
+        let userData;
+        if (data) {
+          userData = JSON.parse(data);
         }
-        const userData = JSON.parse(data);
-        
+
         const response = await fetch('http://127.0.0.1:8000/api/comments', {
           method: 'POST',
           headers: {
@@ -564,15 +564,25 @@
           body: JSON.stringify({
             comment: newComment.value.text,
             itemId: props.itemId,
-            user_id: userData.id
+            user_id: userData ? userData.id : null,
+            user_name: newComment.value.userName,
+            user_image: newComment.value.userImage || defaultUserImage
           })
         });
 
         const result = await response.json();
         if (result.status === 'success') {
-          
+          const newCommentData: Comment = {
+            commentId: result.data.id,
+            userImage: newComment.value.userImage || defaultUserImage,
+            userName: newComment.value.userName,
+            text: newComment.value.text
+          };
+          CommentsData.value.push(newCommentData);
+          CommentsData.value.sort((a, b) => b.commentId - a.commentId);
+          newComment.value.text = '';
         } else {
-          console.error('Failed to add comment:', result.message);         
+          console.error('Failed to add comment:', result.message);
         }
       } catch (error) {
         console.error('Failed to add comment:', error);
@@ -592,9 +602,17 @@
     width: 750px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 5s forwards;
   }
 
   .item-details-content {
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
     padding: 20px;
     border-radius: 10px;
@@ -723,6 +741,7 @@
   }
 
   .comments-section {
+    width: 95%;
     margin-top: 20px;
     padding: 10px;
     border-radius: 5px;
@@ -731,10 +750,19 @@
     line-height: 1.6;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     animation: popIn 1s ease-out;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .comments-section h2 {
+    align-items: left;
   }
 
   .add-comment {
     margin-bottom: 10px;
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
     color: #e1c680;
@@ -742,8 +770,8 @@
     line-height: 1.6;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     border: #e1c680 1px solid;
-    cursor: pointer;
     display: flex;
+    cursor: pointer;
     align-items: center;
     text-align: center;
     justify-content: space-between;
@@ -752,15 +780,24 @@
   }
 
   .add-comment input {
+    width: 90%;
+    height: 70px;
     flex-grow: 1;
     padding: 5px;
     border-radius: 5px;
     border: none;
-    background-color: #333;
+    background-color: #21212179;
     color: #e1c680;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     font-size: 14px;
     line-height: 1.6;
+  }
+
+  .user-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
   }
 
     /* DAMAGE */
@@ -1216,6 +1253,10 @@
 
   @media screen and (max-width: 1440px) {
     .item-details {
+      width: 90%;
+    }
+
+    .comments-section {
       width: 90%;
     }
 
