@@ -77,7 +77,7 @@
   
   <style scoped>
     .item-list-page {
-      width: 750px;
+      width: 600px;
       margin: 0 auto;
       padding: 20px;
     }
@@ -91,6 +91,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      max-width: 100%;
       padding: 10px;
       border-radius: 5px;
       border: 1px solid #e1c680;
@@ -106,29 +107,13 @@
     .item:hover {
       background-color: #333;
     }
-  
-    @media screen and (max-width: 1440px) {
+
+    @media screen and (max-width: 992px) {
       .item-list-page {
-        width: 90%;
+        width: 80%;
       }
+      
     }
   
-    @media screen and (max-width: 1280px) {
-      .item-list-page {
-        width: 90%;
-      }
-    }
-  
-    @media screen and (max-width: 1024px) {
-      .item-list-page {
-        width: 90%;
-      }
-    }
-  
-    @media screen and (max-width: 768px) {
-      .item-list-page {
-        width: 90%;
-      }
-    }
-  </style>
+    </style>
   

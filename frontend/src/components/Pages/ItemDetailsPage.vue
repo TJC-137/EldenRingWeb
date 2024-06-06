@@ -678,7 +678,7 @@ const findFavoriteId = async () => {
             comment: newComment.value.text,
             itemId: props.itemId,
             user_id: userData ? userData.id : null,
-            user_name: newComment.value.userName,
+            user_name: newComment.value.userName || 'Anonymous',
             user_image: newComment.value.userImage || defaultUserImage
           })
         });
@@ -688,7 +688,7 @@ const findFavoriteId = async () => {
           const newCommentData: Comment = {
             commentId: result.data.id,
             userImage: newComment.value.userImage || defaultUserImage,
-            userName: newComment.value.userName,
+            userName: newComment.value.userName || 'Anonymous',
             text: newComment.value.text
           };
           CommentsData.value.push(newCommentData);
@@ -918,6 +918,17 @@ const findFavoriteId = async () => {
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+  }
+
+  .user-info button{
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #e1c680;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    margin-left: 5px;
   }
 
     /* DAMAGE */
