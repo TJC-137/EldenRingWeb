@@ -3,21 +3,20 @@
         "id": 3,
         "image": "/newsImages/shadow.webp",
         "title": "New DLC Shadow Of The Erdtree",
-        "content": "Detailed content of the news 3."
-    },
+        "content": "Pure and radiant, he wields love to shrive clean the hearts of men. There is nothing more terrifying. In that forsaken place, blood must spill. The blood of your fellows, the Erdtree faithful. They were never saints. They just happened to be on the losing side of a war.\n\nMother, wouldst thou truly Lordship sanction, in one so bereft of light? I presume you, too, are keen to know. Just What Kind Miquella is doing here.\n\nThose stripped of the Grace of Gold shall all meet death. In the embrace of Messmer's fiame.\n\nCome, now. Touch the withered arm, and travel to the realm of shadow. I Will not be far behind. May we meet again."
+    },   
     {
         "id": 2,
+        "image": "/newsImages/Miquella.webp",
+        "title": "Will you walk with us?",
+        "content": "Elden Ring’s story is rich and full of really intricate details if you know where to look. With intertwining family trees, lore-rich NPCs, and famous weapons and armor, you can see George R. R. Martin’s influence on the enthralling narrative. Shadow of the Erdtree continues this, focusing more on the family aspect, delving deep into Miquella who is Malenia’s twin brother, as well as Radagon and Queen Marika’s children. Miquella was born with the curse of never growing into an adult and as time passed, spawned his need to age in whatever way possible. This was when he utilized a cocoon and his blood to become one with the Haligtree in an effort to become an Erdtree."
+      }, 
+    {
+        "id": 1,
         "image": "/newsImages/ShadowOfTheErdtree.webp",
         "title": "Concept Art from Shadow Of The Erdtree",
-        "content": "Detailed content of the news 2."
-    },
-    {
-      "id": 1,
-      "image": "/newsImages/Miquella.webp",
-      "title": "Will you walk with us?",
-      "content": "Detailed content of the news 1."
+        "content": "Since the FromSoftware pattern for DLC releases is usually a two-part affair, the fact that Shadow of the Erdtree is one big, complete package means that you’re going to be spending some hours in it. In fact, Miyazaki stated that Shadow of the Erdtree is the “largest expansion” FromSoftware has created “in terms of overall volume”. This translates to a whole new area that is larger than “Limgrave in the base game” coupled with even more dungeons to explore. In fact, Miyazaki has even managed to squeeze in one of his trademark poison swamps into Shadow of the Erdtree. If you’re feeling shudders down your spine or even fully-fledged nightmares of Dark Souls’ Blighttown, you’re not alone…"
     }
-    
     
   ]
   

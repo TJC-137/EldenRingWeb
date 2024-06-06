@@ -52,4 +52,27 @@ const toggleContent = () => {
   border: 2px solid #aaa;
 }
 
+img {
+  width: 100%;
+  height: auto;
+  
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 5%,  /* Top */
+    rgba(0, 0, 0, 1) 20%, /* Fade in */
+    rgba(0, 0, 0, 1) 80%, /* Fade out */
+    rgba(0, 0, 0, 0) 99% /* Bottom */
+  ),
+  linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 3%,  /* Left */
+    rgba(0, 0, 0, 1) 20%, /* Fade in */
+    rgba(0, 0, 0, 1) 85%, /* Fade out */
+    rgba(0, 0, 0, 0) 97% /* Right */
+  );
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+
+}
+
 </style>
