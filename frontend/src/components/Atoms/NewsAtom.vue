@@ -2,12 +2,21 @@
   <div :class="['news-atom', { 'main-news': isMainNews }]" @click="toggleContent">
     <img :src="newsItem.image" alt="News Image" class="news-image" />
     <h2>{{ newsItem.title }}</h2>
-    <p v-if="showContent">{{ newsItem.content }}</p>
+    <div v-if="showContent">
+      <p v-html="formattedContent"></p>
+      <div v-if="newsItem.video">
+        <iframe :src="newsItem.video" width="530" height="280" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   newsItem: {
@@ -25,6 +34,10 @@ const showContent = ref(false);
 const toggleContent = () => {
   showContent.value = !showContent.value;
 };
+
+const formattedContent = computed(() => {
+  return props.newsItem.content.replace(/\n/g, '<br>');
+});
 </script>
 
 <style scoped>
@@ -74,5 +87,4 @@ img {
           mask-composite: intersect;
 
 }
-
 </style>

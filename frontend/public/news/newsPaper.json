@@ -1,22 +1,99 @@
 [
-    {
-        "id": 3,
-        "image": "/newsImages/shadow.webp",
-        "title": "New DLC Shadow Of The Erdtree",
-        "content": "Pure and radiant, he wields love to shrive clean the hearts of men. There is nothing more terrifying. In that forsaken place, blood must spill. The blood of your fellows, the Erdtree faithful. They were never saints. They just happened to be on the losing side of a war.\n\nMother, wouldst thou truly Lordship sanction, in one so bereft of light? I presume you, too, are keen to know. Just What Kind Miquella is doing here.\n\nThose stripped of the Grace of Gold shall all meet death. In the embrace of Messmer's fiame.\n\nCome, now. Touch the withered arm, and travel to the realm of shadow. I Will not be far behind. May we meet again."
-    },   
-    {
-        "id": 2,
-        "image": "/newsImages/Miquella.webp",
-        "title": "Will you walk with us?",
-        "content": "Elden Ring’s story is rich and full of really intricate details if you know where to look. With intertwining family trees, lore-rich NPCs, and famous weapons and armor, you can see George R. R. Martin’s influence on the enthralling narrative. Shadow of the Erdtree continues this, focusing more on the family aspect, delving deep into Miquella who is Malenia’s twin brother, as well as Radagon and Queen Marika’s children. Miquella was born with the curse of never growing into an adult and as time passed, spawned his need to age in whatever way possible. This was when he utilized a cocoon and his blood to become one with the Haligtree in an effort to become an Erdtree."
-      }, 
-    {
-        "id": 1,
-        "image": "/newsImages/ShadowOfTheErdtree.webp",
-        "title": "Concept Art from Shadow Of The Erdtree",
-        "content": "Since the FromSoftware pattern for DLC releases is usually a two-part affair, the fact that Shadow of the Erdtree is one big, complete package means that you’re going to be spending some hours in it. In fact, Miyazaki stated that Shadow of the Erdtree is the “largest expansion” FromSoftware has created “in terms of overall volume”. This translates to a whole new area that is larger than “Limgrave in the base game” coupled with even more dungeons to explore. In fact, Miyazaki has even managed to squeeze in one of his trademark poison swamps into Shadow of the Erdtree. If you’re feeling shudders down your spine or even fully-fledged nightmares of Dark Souls’ Blighttown, you’re not alone…"
-    }
-    
-  ]
-  
+  {
+      "id": 1,
+      "image": "/newsImages/radagonring.webp",
+      "title": "Elden Ring Announced at E3 2019",
+      "content": "Elden Ring, the new action role-playing game developed by FromSoftware in collaboration with Game of Thrones author George R.R. Martin, was officially unveiled at Microsoft’s Xbox E3 2019 press conference on Sunday.\n\nThe first trailer for Elden Ring was a pre-rendered teaser that set the mood for the game, featuring a familiar grim and mysterious FromSoftware aesthetic.\n\nPublished by Bandai Namco, Elden Ring is said to be FromSoftware’s “largest game to date” and “a fantasy action-RPG adventure set within a world created by [Dark Souls series creator] Hidetaka Miyazaki … and George R.R. Martin, author of the A Song of Ice and Fire series.”\n\n“Collaborating with George R.R. Martin to create the Elden Ring mythos has been a genuinely delightful experience and a source of wonderful inspiration,” said Hidetaka Miyazaki, game director on Elden Ring, in a press release. “The team is working hard to ensure that the world of Elden Ring will be a fascinating place for players to explore, filled with peril and wonder from its furthest reaches to its lowest depths. This is a FromSoftware title through and through, rich in fantasy and RPG action. We sincerely hope you look forward to it.”\n\n“Building the world of Elden Ring with Miyazaki-san and his team was a treat!” said George R.R. Martin. “The graphics, mythos, and action-RPG gameplay will deliver an unforgettable experience. I can’t wait for people to see what Elden Ring has in store for them.”",
+      "video": "https://www.youtube.com/embed/Lls6Gdua_XY?si=AVd5D90S5KqJHcRd"
+    },
+  {
+      "id": 2,
+      "image": "/newsImages/storm.webp",
+      "title": "Gameplay Trailer Released",
+      "content": "The first gameplay trailer was revealed at Summer Game Fest 2021, showcasing the open world, combat, and various enemies.",
+      "video":"https://www.youtube.com/embed/E3Huy2cdih0?si=BBR5pkJ7wpYO75K8"
+  },
+  {
+      "id": 3,
+      "image": "/newsImages/radahnFestival.webp",
+      "title": "Release Date Announced",
+      "content": "Alongside the gameplay trailer, the release date was announced: January 21, 2022."
+  },
+  {
+      "id": 4,
+      "image": "/newsImages/ranni.webp",
+      "title": "Elden Ring Story Trailer Released",
+      "content": "FromSoftware conducted a closed network test, allowing selected players to experience the game and provide feedback.",
+      "video": "https://www.youtube.com/embed/K_03kFqWfqs?si=3ioEgLrC8fMiJ1Et"
+    },
+  {
+      "id": 5,
+      "image": "/newsImages/vyke.webp",
+      "title": "Elden Ring Officially Released",
+      "content": "Elden Ring was officially released, receiving widespread critical acclaim for its gameplay, world design, and lore."
+  },
+  {
+      "id": 6,
+      "image": "/newsImages/ranniQuest.webp",
+      "title": "Elden Ring Preview",
+      "content": "The game received its first major patch, addressing various bugs, balancing issues, and adding new content.",
+      "video": "https://www.youtube.com/embed/JldMvQMO_5U?si=TkTxpf24a8G789dy"
+    },
+  {
+      "id": 7,
+      "image": "/newsImages/gracetree.webp",
+      "title": "Elden Ring is the most successful title so far",
+      "content": "Elden Ring surpassed 12 million copies sold worldwide, making it one of FromSoftware's most successful titles."
+  },
+  {
+      "id": 8,
+      "image": "/newsImages/ending.webp",
+      "title": "Elden Ring wins Game of the Year",
+      "content": "Elden Ring was named Game of the Year at The Game Awards 2022, one of the most important awards in the world of video games.\n\nAt a gala held at the Microsoft Theater in Los Angeles, the awards organization crowned the video game developed by FromSoftware and published by Bandai Namco Entertainment for multiple platforms as the best of a 2022 that was full of quality titles.\n\n",
+      "video": "https://www.youtube.com/embed/1VI5IfMWHko?si=97riSzRIe0cdO4UF"
+    },
+  {
+      "id": 9,
+      "image": "/newsImages/god.webp",
+      "title": "Interview with Hidetaka Miyazaki",
+      "content": "Sería una mentira decir que no hubo preocupación al respecto por parte del equipo de desarrollo. No nos proponemos crear un juego difícil. Nos proponemos crear un juego desafiante. Y para conseguirlo, necesitamos que haya amenazas y peligros, y que haya incógnitas.\n\nNecesitamos esta amplitud de libertad, este alto grado de libertad en la forma de abordar esta aventura. "
+  },
+  {
+      "id": 10,
+      "image": "/newsImages/grrMartin.webp",
+      "title": "George R. R. Martin's Interview",
+      "content": "George R. R. Martin, author of the A Song of Ice and Fire series, and the main protagonist of the series, is one of the most important figures in the history.\n\nEl marco del juego y el mundo, detallando el devenir de la historia y figuras que fueron apareciendo en ellas..."
+  },
+  {
+      "id": 11,
+      "image": "/newsImages/Malenia.webp",
+      "title": "Elden Ring DLC rumors",
+      "content": "Following the statements made by the Bandai Namco CEO, the buzz around Elden Ring DLC has been at an all-time high. Amidst all the speculations that have been fueled by Arnaud Muller’s alleged tease, a recent rumor revealing the date of the DLC launch has taken the Elden Ring community by storm. Moreover, the fans waiting for an official update might also find this viral rumor interesting as it also predicts the next big official announcement by Bandai Namco. Hint: It’s just around the corner!\n\nEver since the DLC announcement this year, fans have waited for the next big update. However, the developers have been very cautious with the progress being under the sheets. It goes without saying that the mystery around the project has only added to the hype. While the fan queries still await an official answer, a source has revealed the first glimpse of Shadow of the Erdtree is set to unfold at the Game Awards. "
+  },
+  {
+      "id": 12,
+      "image": "/newsImages/hand.webp",
+      "title": "Elden Ring: Shadow of the Erdtree DLC will be officially revealed in hours",
+      "content": "Rumors circulated earlier this year that Shadow of the Erdtree will be quickly announced and released in February, but From Software's parent company Kadokawa put those rumors to rest earlier this month, albeit in a customarily vague and businesslike way. Elden Ring released on February 25, 2022, so the rumors mostly stem from the expectation of an announcement before the game's two-year anniversary"
+  },
+  {
+      "id": 13,
+      "image": "/newsImages/ShadowOfTheErdtree.webp",
+      "title": "Concept Art from Shadow Of The Erdtree",
+      "content": "Since the FromSoftware pattern for DLC releases is usually a two-part affair, the fact that Shadow of the Erdtree is one big, complete package means that you’re going to be spending some hours in it. In fact, Miyazaki stated that Shadow of the Erdtree is the “largest expansion” FromSoftware has created “in terms of overall volume”. This translates to a whole new area that is larger than “Limgrave in the base game” coupled with even more dungeons to explore. In fact, Miyazaki has even managed to squeeze in one of his trademark poison swamps into Shadow of the Erdtree. If you’re feeling shudders down your spine or even fully-fledged nightmares of Dark Souls’ Blighttown, you’re not alone…"
+  },
+  {
+    "id": 14,
+    "image": "/newsImages/shadow.webp",
+    "title": "New DLC Shadow Of The Erdtree",
+    "content": "Pure and radiant, he wields love to shrive clean the hearts of men. There is nothing more terrifying. In that forsaken place, blood must spill. The blood of your fellows, the Erdtree faithful. They were never saints. They just happened to be on the losing side of a war.\n\nMother, wouldst thou truly Lordship sanction, in one so bereft of light? I presume you, too, are keen to know. Just What Kind Miquella is doing here.\n\nThose stripped of the Grace of Gold shall all meet death. In the embrace of Messmer's fiame.\n\nCome, now. Touch the withered arm, and travel to the realm of shadow. I Will not be far behind. May we meet again.",   
+    "video": "https://www.youtube.com/embed/qLZenOn7WUo?si=O0shfCnwP7sdcDSI"
+  },
+  {
+    "id": 15,
+    "image": "/newsImages/Miquella.webp",
+    "title": "Will you walk with us?",
+    "content": "Elden Ring’s story is rich and full of really intricate details if you know where to look. With intertwining family trees, lore-rich NPCs, and famous weapons and armor, you can see George R. R. Martin’s influence on the enthralling narrative. Shadow of the Erdtree continues this, focusing more on the family aspect, delving deep into Miquella who is Malenia’s twin brother, as well as Radagon and Queen Marika’s children. Miquella was born with the curse of never growing into an adult and as time passed, spawned his need to age in whatever way possible. This was when he utilized a cocoon and his blood to become one with the Haligtree in an effort to become an Erdtree.",
+    "video": "https://www.youtube.com/embed/0JKX13l7UMU?si=Um5nC2r-Fpa0DjGM"
+  }
+]
