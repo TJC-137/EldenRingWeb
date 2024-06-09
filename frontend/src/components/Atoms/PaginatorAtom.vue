@@ -125,5 +125,19 @@
     background-color: #60606097;
     cursor: not-allowed;
   }
+
+  @media screen and (max-width: 768px) {
+
+    .paginator button {
+      padding: 5px 5px;
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .paginator span {
+      margin-top: 10px;
+    }
+    
+  }
   </style>
   

@@ -5,7 +5,7 @@
     <div v-if="showContent">
       <p v-html="formattedContent"></p>
       <div v-if="newsItem.video">
-        <iframe :src="newsItem.video" width="530" height="280" 
+        <iframe :src="newsItem.video" width="530" height="280" class="news-video" 
         title="YouTube video player" frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
@@ -87,4 +87,13 @@ img {
           mask-composite: intersect;
 
 }
+
+@media screen and (max-width: 768px) {
+
+  .news-video {
+    width: 100%;
+    height: auto;
+  }
+}
+
 </style>
