@@ -11,6 +11,7 @@ import RegisterAtom from '../components/Atoms/RegisterAtom.vue';
 import EditAtom from '../components/Atoms/EditAtom.vue';
 import FavoritesPage from '../components/Pages/FavoritesPage.vue';
 import ClassesPage from '../components/Pages/ClassesPage.vue';
+import LorePage from '../components/Pages/LorePage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,11 @@ const router = createRouter({
           name: 'map',
           component: MapPage,
           props: true,
+        },
+        {
+          path: 'lore',
+          name: 'lore',
+          component: LorePage,
         },
         {
           path: ':category',
