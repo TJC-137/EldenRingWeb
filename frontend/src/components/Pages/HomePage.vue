@@ -28,6 +28,7 @@ import { useRouter } from 'vue-router';
 
 // Import images
 const newsImage = new URL('../../assets/images/Shattering.webp', import.meta.url).href;
+const classesImage = new URL('../../assets/images/Artorias.webp', import.meta.url).href;
 const categoriesImage = new URL('../../assets/images/ShadowOfTheErdtree.webp', import.meta.url).href;
 const mapImage = new URL('../../assets/images/exploration.webp', import.meta.url).href;
 
@@ -36,6 +37,7 @@ const router = useRouter();
 
 const sections = ref([
   { name: "News", imageUrl: newsImage, path: '/news' },
+  { name: "Origins", imageUrl: classesImage, path: '/classes' },
   { name: "Categories", imageUrl: categoriesImage, path: '/categories' },
   { name: "Map", imageUrl: mapImage, path: '/map' }
 ]);
