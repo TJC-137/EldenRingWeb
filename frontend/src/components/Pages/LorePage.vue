@@ -1,26 +1,29 @@
 <template>
     <div class="lore-container">
       <h1>Lore</h1>
-      <div class="content-wrapper">
-        <div class="lore" @mouseover="changeText" @mouseout="resetText"></div>
-        <p class="lore-text">{{ loreText }}</p>
+        <div class="content-wrapper">
+            <div class="lore" @mouseover="changeText" @mouseout="resetText"></div>
+            <p class="lore-text">{{ loreText }}</p>
+        </div>
+        <div class="gen-tree-wrapper">
+            <h2> Genealogycal Tree </h2>
+            <img class="gen-tree" src="../../assets/images/demigod_gentree.webp">
+            <p class="lore-description">Discover the intricate and fascinating lore of the Elden Ring universe. Explore the demigod genealogy and uncover the secrets hidden within.</p>      
+        </div>
       </div>
-      <img class="gen-tree" src="../../assets/images/demigod_gentree.webp">
-      <p class="lore-description">Discover the intricate and fascinating lore of the Elden Ring universe. Explore the demigod genealogy and uncover the secrets hidden within.</p>
-    </div>
   </template>
   
   <script setup lang="ts">
   import { ref } from 'vue';
   
-  const loreText = ref('Explore the night of the plot, and discover the secrets of the demigods.');
+  const loreText = ref('Unveil the dramatic events of the Shattering and the rise and fall of the demigods.');
   
   const changeText = () => {
-    loreText.value = 'Unveil the dramatic events of the Shattering and the rise and fall of the demigods.';
+    loreText.value = 'Explore the night of the plot, and discover the secrets of the demigods.';
   };
   
   const resetText = () => {
-    loreText.value = 'Explore the night of the plot, and discover the secrets of the demigods.';
+    loreText.value = 'Unveil the dramatic events of the Shattering and the rise and fall of the demigods.';
   };
   </script>
   
@@ -69,6 +72,13 @@
   }
 
 
+  .gen-tree-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
   
   .gen-tree {
     width: 100%;
@@ -109,5 +119,16 @@
     color: #e1c680;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   }
+
+  @media screen and (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+  }
+
   </style>
   
