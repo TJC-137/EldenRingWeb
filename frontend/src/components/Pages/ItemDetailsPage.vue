@@ -993,10 +993,10 @@ const findFavoriteId = async () => {
   {
     content: '';
     display: inline-block;
-    width: 25px; /* Ajusta el ancho según sea necesario */
-    height: 25px; /* Ajusta la altura según sea necesario */
-    background-size: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: 25px; 
+    height: 25px; 
+    background-size: contain; 
+    background-repeat: no-repeat; 
     margin-right: 5px; /* Espacio entre la imagen y el texto */
     vertical-align: middle; /* Alinea la imagen verticalmente con el texto */
   }
