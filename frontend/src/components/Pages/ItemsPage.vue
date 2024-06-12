@@ -1,3 +1,4 @@
+<!-- ItemsPage.vue -->
 <template>
   <div class="items-page">
     <h1>Categories</h1>

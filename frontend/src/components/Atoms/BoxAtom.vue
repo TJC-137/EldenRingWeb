@@ -52,7 +52,7 @@
         display: inline-block; /* Ajusta tamaño según el contenido */
         box-sizing: border-box; /* Incluye el borde y el relleno en el ancho total */
    
-        border: 2px solid #ab966f;
+        border: 2px solid #b1b1b1;
         border-radius: 1%;   
         padding: 10px;
 
@@ -64,6 +64,10 @@
         min-height: 360px; /* Tamaño mínimo para la caja */
         max-height: 360px; /* Tamaño máximo para la caja */
 
+    }
+
+    .box:hover{
+        border-color: #ab966f;
     }
 
 
@@ -100,7 +104,6 @@
         width: 150px;
         height: 200px;
     }
-
 
 
 </style>

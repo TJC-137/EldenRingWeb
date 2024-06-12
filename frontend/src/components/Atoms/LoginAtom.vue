@@ -52,13 +52,6 @@
             }
 
 
-            // if(result.status === 'error'){
-            //     console.log(errors.value)
-            //     errors.value = result.message;
-            //     error.value = true;
-            // }
-
-
         } catch (error) {
             console.error('Error al registrar el usuario:', error);
         }
