@@ -1,5 +1,7 @@
 ### Instrucciones para descargar el proyecto
 
+Este proyecto es una aplicación web de visualización de información de Elden Ring, todo este trabajo ha sido con fines académicos y bajo ningún concepto tengo intención de lucrarme con esta página.
+
 <!-- En la página 79 de la memoria de mi proyecto - 6.3 Guía de Instalación hay un tutorial 
 detallando y paso por paso, y con la ayuda de imágenes este proceso. -->
 
@@ -9,28 +11,36 @@ Voy a detallar aquí instrucciones para descargar y desplegar el proyecto en loc
 
 <!-- Asegurarse de crear la base de datos, llamarla 'elden_ring_db' e importar el .sql -->
 
-- git clone https://github.com/TJC-137/EldenRingWeb.git
+```
+git clone https://github.com/TJC-137/EldenRingWeb.git
 
-- cd EldenRingWeb
+cd EldenRingWeb
+```
 
 -----------------------------------------------------------------------------------------
 
 ### Backend
 
-- cd backend 
+```
+cd backend 
+```
 
 <!-- Instalar composer -->
 
-- composer install
-
+```
+composer install
+```
 <!-- Verificar versión de php -->
 
-- php -v
+```
+php -v
+```
 
 <!-- Copiar el .env de ejemplo -->
 
-- cp .env.example .env
-
+```
+cp .env.example .env
+```
 <!-- 
 Entrar en el .env que se acaba de crear y modificar las variables de entorno 
 (aparecerán comentadas) 
@@ -47,11 +57,15 @@ DB_PASSWORD=
 
 <!-- Una vez hecho esto, generar las claves -->
 
-- php artisan key:generate
+```
+php artisan key:generate
+```
 
 <!-- Ejecutar servidor -->
 
-- php artisan serve
+```
+php artisan serve
+```
 
 -------------------------------------------------------------------------------------
 
@@ -59,23 +73,34 @@ DB_PASSWORD=
 
 <!-- Abrir otro terminal -->
 
-- cd frontend
-
+```
+cd frontend
+```
 <!-- Ahora usar 'npm i' o 'npm install' -->
 
-- npm i
-
+```
+npm i
+```
 <!-- Ejecutar servidor -->
 <!-- Ahora usar 'npm run dev' o 'npm start' -->
 
-- npm run dev
-
+```
+npm run dev
+```
 -------------------------------------------------------------------------------------
 
 <!-- Dirigete a tu localhost, la aplicación ya debería funcionar -->
 
 * Si hay algún problema con la base de datos o el import, se pueden usar los siguientes comandos en /backend
 
-- php artisan migrate <!--  Migrará la información de las tablas -->
+<!--  Migrará la información de las tablas -->
 
-- php artisan migrate:fresh <!--  Migrará y reseteará la información de las tablas -->
+```
+php artisan migrate 
+```
+
+<!--  Migrará y reseteará la información de las tablas -->
+
+```
+- php artisan migrate:fresh 
+```
