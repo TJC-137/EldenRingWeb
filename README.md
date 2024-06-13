@@ -7,6 +7,8 @@ Voy a detallar aquí instrucciones para descargar y desplegar el proyecto en loc
 
 -----------------------------------------------------------------------------------------
 
+<!-- Asegurarse de crear la base de datos, llamarla 'elden_ring_db' e importar el .sql -->
+
 - git clone https://github.com/TJC-137/EldenRingWeb.git
 
 - cd EldenRingWeb
@@ -71,3 +73,9 @@ DB_PASSWORD=
 -------------------------------------------------------------------------------------
 
 <!-- Dirigete a tu localhost -->
+
+* Si hay algún problema con la base de datos o el import, se pueden usar los siguientes comandos en /backend
+
+- php artisan migrate <!--  Migrará la información de las tablas -->
+
+- php artisan migrate:fresh <!--  Migrará y reseteará la información de las tablas -->
