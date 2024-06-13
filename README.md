@@ -72,7 +72,7 @@ DB_PASSWORD=
 
 -------------------------------------------------------------------------------------
 
-<!-- Dirigete a tu localhost -->
+<!-- Dirigete a tu localhost, la aplicación ya debería funcionar -->
 
 * Si hay algún problema con la base de datos o el import, se pueden usar los siguientes comandos en /backend
 
