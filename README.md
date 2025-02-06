@@ -9,7 +9,7 @@ Voy a detallar aquí instrucciones para descargar y desplegar el proyecto en loc
 
 -----------------------------------------------------------------------------------------
 
-<!-- Asegurarse de crear la base de datos, llamarla 'elden_ring_db' e importar el .sql -->
+ Asegurarse de crear la base de datos, llamarla 'elden_ring_db' e importar el .sql
 
 ```
 git clone https://github.com/TJC-137/EldenRingWeb.git
